@@ -1,0 +1,566 @@
+/* ============================================================
+   Google Font + Reset
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ============================================================
+   CSS Variables
+   ============================================================ */
+:root {
+  --bg-from: #0f0c29;
+  --bg-via: #302b63;
+  --bg-to: #24243e;
+  --card-bg: rgba(255, 255, 255, 0.07);
+  --card-border: rgba(255, 255, 255, 0.12);
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --text-primary: #f0f0f0;
+  --text-secondary: rgba(255,255,255,0.55);
+  --accent: #7c6df0;
+  --accent-light: #a89cf7;
+  --success: #4CAF50;
+  --danger: #ff5370;
+  --food-color: #FF6B6B;
+  --transport-color: #4ECDC4;
+  --fun-color: #FFE66D;
+  --input-bg: rgba(255,255,255,0.08);
+  --input-border: rgba(255,255,255,0.15);
+  --input-focus: rgba(124, 109, 240, 0.5);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --transition: 0.2s ease;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, var(--bg-from) 0%, var(--bg-via) 50%, var(--bg-to) 100%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+.container {
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ============================================================
+   Utility
+   ============================================================ */
+.hidden { display: none !important; }
+
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--card-shadow);
+}
+
+.section-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+header {
+  padding: 40px 0 24px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #a89cf7, #7c6df0, #4ECDC4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
+}
+
+header .subtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+}
+
+/* Balance Card */
+#balance-display {
+  background: linear-gradient(135deg, rgba(124,109,240,0.4), rgba(78,205,196,0.3));
+  border: 1px solid rgba(124,109,240,0.4);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(124,109,240,0.2), var(--card-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+#balance-display::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at center, rgba(124,109,240,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.balance-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+#balance-amount {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -2px;
+  color: #fff;
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(124,109,240,0.6);
+}
+
+#tx-count {
+  font-size: 0.78rem;
+  color: var(--accent-light);
+  font-weight: 500;
+  background: rgba(124,109,240,0.2);
+  padding: 3px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(124,109,240,0.3);
+}
+
+/* ============================================================
+   Main sections spacing
+   ============================================================ */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 20px;
+}
+
+/* ============================================================
+   Input Section / Form
+   ============================================================ */
+.input-section {
+  padding: 24px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.field-group label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.field-group input,
+.field-group select {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 12px 16px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.field-group input::placeholder {
+  color: rgba(255,255,255,0.25);
+}
+
+.field-group input:focus,
+.field-group select:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(124,109,240,0.12);
+  box-shadow: 0 0 0 3px var(--input-focus);
+}
+
+.field-group select option {
+  background: #302b63;
+  color: #fff;
+}
+
+/* Submit button */
+#transaction-form button[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #7c6df0, #5a4de6);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+  box-shadow: 0 4px 20px rgba(124,109,240,0.4);
+  position: relative;
+  overflow: hidden;
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+}
+
+#transaction-form button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(124,109,240,0.55);
+  filter: brightness(1.08);
+}
+
+#transaction-form button[type="submit"]:active {
+  transform: translateY(0px) scale(0.98);
+  box-shadow: 0 2px 10px rgba(124,109,240,0.3);
+}
+
+/* Ripple effect */
+#transaction-form button[type="submit"]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: background 0.3s ease;
+}
+
+#transaction-form button[type="submit"]:active::after {
+  background: rgba(255,255,255,0.1);
+}
+
+/* Error messages */
+.error {
+  font-size: 0.75rem;
+  color: #ff8fa3;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.error::before { content: '⚠ '; }
+
+/* ============================================================
+   Chart Section
+   ============================================================ */
+.visual-section {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.visual-section canvas {
+  max-height: 280px;
+  width: 100% !important;
+  height: auto !important;
+}
+
+#chart-empty {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 32px 0;
+}
+
+#chart-empty::before {
+  content: '📊\A';
+  white-space: pre;
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* ============================================================
+   Transaction List
+   ============================================================ */
+.list-section {
+  padding: 24px;
+}
+
+#transaction-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Scrollbar */
+#transaction-list::-webkit-scrollbar { width: 4px; }
+#transaction-list::-webkit-scrollbar-track { background: transparent; }
+#transaction-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
+
+/* List item */
+#transaction-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition), transform var(--transition), border-color var(--transition);
+  position: relative;
+  overflow: hidden;
+  animation: slideIn 0.3s ease forwards;
+}
+
+#transaction-list li:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.15);
+  transform: translateX(3px);
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Category icon */
+.item-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-icon.food      { background: rgba(255,107,107,0.18); }
+.item-icon.transport { background: rgba(78,205,196,0.18); }
+.item-icon.fun       { background: rgba(255,230,109,0.18); }
+
+.item-name {
+  flex: 1;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.item-amount {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.item-category {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.item-category.food      { background: rgba(255,107,107,0.2); color: #FF6B6B; border: 1px solid rgba(255,107,107,0.3); }
+.item-category.transport { background: rgba(78,205,196,0.2);  color: #4ECDC4; border: 1px solid rgba(78,205,196,0.3); }
+.item-category.fun       { background: rgba(255,230,109,0.2); color: #FFE66D; border: 1px solid rgba(255,230,109,0.3); }
+
+/* Delete button */
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.25);
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: color var(--transition), background var(--transition), transform var(--transition);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.delete-btn:hover {
+  color: var(--danger);
+  background: rgba(255,83,112,0.15);
+  transform: scale(1.15);
+}
+
+#list-empty {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 32px 0;
+}
+
+#list-empty::before {
+  content: '🧾\A';
+  white-space: pre;
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* ============================================================
+   Storage Warning
+   ============================================================ */
+#storage-warning {
+  margin: 12px 0;
+  padding: 12px 16px;
+  background: rgba(255,193,7,0.1);
+  color: #ffc107;
+  border: 1px solid rgba(255,193,7,0.3);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ============================================================
+   Fade-in for sections
+   ============================================================ */
+.input-section, .visual-section, .list-section {
+  animation: fadeUp 0.5s ease forwards;
+}
+.visual-section { animation-delay: 0.1s; opacity: 0; }
+.list-section   { animation-delay: 0.2s; opacity: 0; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 768px) {
+  header { padding: 28px 0 18px; }
+  header h1 { font-size: 1.6rem; }
+  #balance-amount { font-size: 2.3rem; }
+  #balance-display { padding: 22px 20px; }
+  .input-section, .visual-section, .list-section { padding: 18px; }
+  .visual-section canvas { max-height: 220px; }
+}
+
+/* ============================================================
+   Edit mode styles
+   ============================================================ */
+
+/* Edit button in list item */
+.edit-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.25);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: color var(--transition), background var(--transition), transform var(--transition);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.edit-btn:hover {
+  color: #FFE66D;
+  background: rgba(255,230,109,0.15);
+  transform: scale(1.15);
+}
+
+/* Highlight the list item currently being edited */
+#transaction-list li.editing {
+  border-color: rgba(255,230,109,0.6);
+  background: rgba(255,230,109,0.06);
+  box-shadow: 0 0 0 2px rgba(255,230,109,0.2);
+}
+
+#transaction-list li.editing .item-name {
+  color: #FFE66D;
+}
+
+/* Form edit mode — highlight the card border */
+.input-section.edit-mode {
+  border-color: rgba(255,230,109,0.4);
+  box-shadow: var(--card-shadow), 0 0 0 2px rgba(255,230,109,0.15);
+}
+
+/* Cancel button */
+.cancel-btn {
+  width: 100%;
+  margin-top: 8px;
+  padding: 11px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), transform var(--transition);
+  letter-spacing: 0.02em;
+}
+
+.cancel-btn:hover {
+  background: rgba(255,83,112,0.15);
+  color: #ff8fa3;
+  border-color: rgba(255,83,112,0.3);
+  transform: translateY(-1px);
+}
+
+/* Submit button color change in edit mode — target via JS class on form */
+#transaction-form.edit-mode button[type="submit"] {
+  background: linear-gradient(135deg, #f0a500, #d4880a);
+  box-shadow: 0 4px 20px rgba(240,165,0,0.4);
+}
+
+#transaction-form.edit-mode button[type="submit"]:hover {
+  box-shadow: 0 8px 28px rgba(240,165,0,0.55);
+}
